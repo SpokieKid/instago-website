@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { 
   Brain, 
   Zap, 
@@ -11,7 +12,8 @@ import {
   CheckCircle,
   Download,
   MessageCircle,
-  Star
+  Star,
+  X
 } from 'lucide-react'
 import FeatureCard from '@/components/FeatureCard'
 import WorkflowSection from '@/components/WorkflowSection'
@@ -20,6 +22,8 @@ import MobileMenu from '@/components/MobileMenu'
 import MagicBento from '@/components/MagicBento'
 
 export default function Home() {
+  const [showContactModal, setShowContactModal] = useState(false)
+
   const coreValues = [
     {
       icon: <Zap className="w-8 h-8" />,
@@ -385,26 +389,12 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowContactModal(true)}
                 className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-slate-400 transition-all duration-300 flex items-center"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 联系我们
               </motion.button>
-            </div>
-
-            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-8 border border-slate-200/50">
-              <h3 className="text-lg font-semibold text-slate-800 mb-4">系统要求</h3>
-              <div className="grid md:grid-cols-3 gap-4 text-sm text-slate-600">
-                <div>
-                  <span className="font-medium">系统版本：</span>macOS 12.0+
-                </div>
-                <div>
-                  <span className="font-medium">处理器：</span>Intel 或 Apple Silicon
-                </div>
-                <div>
-                  <span className="font-medium">存储空间：</span>50MB
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -456,6 +446,46 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={() => setShowContactModal(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-6 text-center">
+              <button
+                onClick={() => setShowContactModal(false)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">联系我们</h3>
+              <p className="text-slate-600 mb-6">扫码添加微信，获取最新产品动态</p>
+              
+              <div className="flex justify-center mb-6">
+                <Image
+                  src="/wechat_code.jpg"
+                  alt="微信二维码"
+                  width={250}
+                  height={250}
+                  className="rounded-lg shadow-lg"
+                />
+              </div>
+              
+              <p className="text-sm text-slate-500">扫一扫上面的二维码，加我为朋友</p>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   )
 }
