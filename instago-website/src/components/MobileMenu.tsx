@@ -1,7 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Menu, Camera } from 'lucide-react'
+import { X, Menu } from 'lucide-react'
 import { useState } from 'react'
 
 export default function MobileMenu() {
@@ -49,8 +50,14 @@ export default function MobileMenu() {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center space-x-2">
-                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                      <Camera className="w-5 h-5 text-white" />
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center p-1">
+                      <Image
+                        src="/instago-icon.png"
+                        alt="InstaGo"
+                        width={24}
+                        height={24}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <span className="text-xl font-bold text-slate-800">InstaGo</span>
                   </div>

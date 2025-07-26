@@ -1,8 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { 
-  Camera, 
   Brain, 
   Zap, 
   BookOpen, 
@@ -11,13 +11,13 @@ import {
   CheckCircle,
   Download,
   MessageCircle,
-  Play,
   Star
 } from 'lucide-react'
 import FeatureCard from '@/components/FeatureCard'
 import WorkflowSection from '@/components/WorkflowSection'
 import AdvancedFeatures from '@/components/AdvancedFeatures'
 import MobileMenu from '@/components/MobileMenu'
+import MagicBento from '@/components/MagicBento'
 
 export default function Home() {
   const coreValues = [
@@ -47,14 +47,48 @@ export default function Home() {
     }
   ]
 
+  // 为 MagicBento 转换数据格式
+  const bentoCards = [
+    {
+      color: "#060010",
+      title: "截图即任务",
+      description: "解放用户从截图到下一步行动的思考链路",
+      label: "智能识别",
+    },
+    {
+      color: "#060010",
+      title: "截图即信息",
+      description: "帮助用户规整化地保存截图内容",
+      label: "信息管理",
+    },
+    {
+      color: "#060010",
+      title: "截图即场景",
+      description: "从截图中为用户提供场景化的相关知识和帮助",
+      label: "场景分析",
+    },
+    {
+      color: "#060010",
+      title: "截图无干扰",
+      description: "截图后用户可不受干扰地继续工作，等待AI给出辅助结果",
+      label: "无缝体验",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Navigation */}
       <nav className="px-6 py-4 backdrop-blur-sm bg-white/70 border-b border-slate-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Camera className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center p-1">
+              <Image
+                src="/instago-icon.png"
+                alt="InstaGo"
+                width={24}
+                height={24}
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="text-xl font-bold text-slate-800">InstaGo</span>
           </div>
@@ -104,15 +138,6 @@ export default function Home() {
                   <Download className="w-5 h-5 mr-2" />
                   立即下载
                 </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-full font-semibold text-lg hover:border-slate-400 transition-all duration-300 flex items-center justify-center"
-                >
-                  <Play className="w-5 h-5 mr-2" />
-                  观看演示
-                </motion.button>
               </div>
 
               <div className="flex items-center space-x-6 pt-4">
@@ -148,7 +173,15 @@ export default function Home() {
                     <div className="h-4 bg-slate-200 rounded animate-pulse"></div>
                     <div className="h-4 bg-slate-200 rounded w-3/4 animate-pulse"></div>
                     <div className="h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center">
-                      <Camera className="w-12 h-12 text-blue-500 animate-float" />
+                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg animate-float">
+                        <Image
+                          src="/instago-icon.png"
+                          alt="InstaGo"
+                          width={32}
+                          height={32}
+                          className="w-8 h-8 object-contain"
+                        />
+                      </div>
                     </div>
                     <div className="h-4 bg-slate-200 rounded w-2/3 animate-pulse"></div>
                   </div>
@@ -162,8 +195,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Core Values */}
-      <section id="features" className="px-6 py-20 bg-white/50">
+      {/* Core Values - Magic Bento */}
+      <section id="features" className="px-6 py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -172,25 +205,28 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               四大核心价值
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
               重新定义截图的价值，让每一次截图都成为生产力的提升
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {coreValues.map((item, index) => (
-              <FeatureCard
-                key={index}
-                icon={item.icon}
-                title={item.title}
-                description={item.description}
-                color={item.color}
-                index={index}
-              />
-            ))}
+          <div className="flex justify-center">
+            <MagicBento 
+              textAutoHide={true}
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              enableTilt={true}
+              enableMagnetism={true}
+              clickEffect={true}
+              spotlightRadius={300}
+              particleCount={12}
+              glowColor="132, 0, 255"
+              customCards={bentoCards}
+            />
           </div>
         </div>
       </section>
@@ -372,8 +408,14 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Camera className="w-5 h-5 text-white" />
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center p-1">
+                  <Image
+                    src="/instago-icon.png"
+                    alt="InstaGo"
+                    width={24}
+                    height={24}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <span className="text-xl font-bold">InstaGo</span>
               </div>

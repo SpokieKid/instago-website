@@ -1,8 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { 
-  Camera,
   Upload,
   Brain,
   FileText,
@@ -12,7 +12,17 @@ import {
 export default function WorkflowSection() {
   const steps = [
     {
-      icon: <Camera className="w-8 h-8" />,
+      icon: (
+        <div className="w-8 h-8 flex items-center justify-center">
+          <Image
+            src="/instago-icon.png"
+            alt="截图捕获"
+            width={32}
+            height={32}
+            className="w-full h-full object-contain"
+          />
+        </div>
+      ),
       title: "截图捕获",
       description: "使用全局快捷键或拖拽到悬浮窗，快速捕获任何内容",
       color: "from-blue-500 to-cyan-500"
