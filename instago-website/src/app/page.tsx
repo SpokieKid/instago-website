@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { 
   Brain, 
   Zap, 
@@ -13,16 +13,47 @@ import {
   Download,
   MessageCircle,
   Star,
-  X
+  X,
+  Laptop
 } from 'lucide-react'
 import FeatureCard from '@/components/FeatureCard'
 import WorkflowSection from '@/components/WorkflowSection'
 import AdvancedFeatures from '@/components/AdvancedFeatures'
-import MobileMenu from '@/components/MobileMenu'
+// import MobileMenu from '@/components/MobileMenu'
 import MagicBento from '@/components/MagicBento'
 
 export default function Home() {
   const [showContactModal, setShowContactModal] = useState(false)
+  const [showDownloadModal, setShowDownloadModal] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // 检测移动端设备
+  useEffect(() => {
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent.toLowerCase()
+      const mobileKeywords = ['android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone']
+      const isMobileDevice = mobileKeywords.some(keyword => userAgent.includes(keyword))
+      setIsMobile(isMobileDevice)
+    }
+
+    checkMobile()
+  }, [])
+
+  // 处理下载
+  const handleDownload = () => {
+    // 创建下载链接并触发下载
+    const link = document.createElement('a')
+    link.href = '/InstaGo_v1.1.zip'
+    link.download = 'InstaGo_v1.1.zip'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    
+    // 显示下载提示弹窗
+    setTimeout(() => {
+      setShowDownloadModal(true)
+    }, 500)
+  }
 
   const coreValues = [
     {
@@ -110,7 +141,7 @@ export default function Home() {
               截图管理
             </a>
           </div>
-          <MobileMenu />
+          {/* <MobileMenu /> */}
         </div>
       </nav>
 
@@ -142,14 +173,26 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  立即下载
-                </motion.button>
+                {isMobile ? (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="px-8 py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-full font-semibold text-lg shadow-lg flex items-center justify-center"
+                  >
+                    <Laptop className="w-5 h-5 mr-2" />
+                    请到 Mac 上下载
+                  </motion.div>
+                ) : (
+                  <motion.button
+                    onClick={handleDownload}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    立即下载
+                  </motion.button>
+                )}
               </div>
 
               <div className="flex items-center space-x-6 pt-4">
@@ -376,15 +419,28 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
-              >
-                <Download className="w-5 h-5 mr-2" />
-                下载 InstaGo
-                <span className="ml-2 text-sm opacity-80">macOS</span>
-              </motion.button>
+              {isMobile ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="px-8 py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-full font-semibold text-lg shadow-lg flex items-center"
+                >
+                  <Laptop className="w-5 h-5 mr-2" />
+                  请到 Mac 上下载
+                  <span className="ml-2 text-sm opacity-80">macOS</span>
+                </motion.div>
+              ) : (
+                <motion.button
+                  onClick={handleDownload}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  下载 InstaGo
+                  <span className="ml-2 text-sm opacity-80">macOS</span>
+                </motion.button>
+              )}
               
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -482,6 +538,107 @@ export default function Home() {
               </div>
               
               <p className="text-sm text-slate-500">扫一扫上面的二维码，加我为朋友</p>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Download Instructions Modal */}
+      {showDownloadModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={() => setShowDownloadModal(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-6">
+              <button
+                onClick={() => setShowDownloadModal(false)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
+                             <div className="text-center mb-6">
+                 <div className="w-16 h-16 bg-slate-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                   <CheckCircle className="w-8 h-8 text-white" />
+                 </div>
+                 <h3 className="text-2xl font-bold text-slate-900 mb-2">下载成功！</h3>
+                 <p className="text-slate-600">InstaGo 正在下载中...</p>
+               </div>
+
+                             <div className="space-y-4">
+                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                   <div className="flex items-start space-x-3">
+                     <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                       <span className="text-white text-sm font-bold">!</span>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-slate-800 mb-2">如果提示无法打开应用</h4>
+                       <ol className="text-sm text-slate-700 space-y-1 list-decimal list-inside">
+                         <li>打开 <strong>系统设置</strong></li>
+                         <li>选择 <strong>隐私与安全性</strong></li>
+                         <li>滑动到最下方，找到被阻止的应用</li>
+                         <li>点击 <strong>&quot;仍要打开&quot;</strong> 按钮</li>
+                       </ol>
+                     </div>
+                   </div>
+                 </div>
+
+                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                   <div className="flex items-start space-x-3">
+                     <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                       <Brain className="w-4 h-4 text-white" />
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-slate-800 mb-2">使用提示</h4>
+                       <ul className="text-sm text-slate-700 space-y-1">
+                         <li>• 首次使用建议查看应用内的快速指南</li>
+                         <li>• 可通过快捷键快速调用截图功能</li>
+                         <li>• 支持多种 AI 模型，可根据需要切换</li>
+                         <li>• 所有数据本地存储，确保隐私安全</li>
+                       </ul>
+                     </div>
+                   </div>
+                 </div>
+
+                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                   <div className="flex items-start space-x-3">
+                     <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                       <MessageCircle className="w-4 h-4 text-white" />
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-slate-800 mb-2">需要帮助？</h4>
+                       <p className="text-sm text-slate-700 mb-2">
+                         如有任何问题或建议，欢迎通过微信联系我们
+                       </p>
+                       <button
+                         onClick={() => {
+                           setShowDownloadModal(false)
+                           setShowContactModal(true)
+                         }}
+                         className="text-sm bg-slate-600 text-white px-3 py-1 rounded-md hover:bg-slate-700 transition-colors"
+                       >
+                         联系我们
+                       </button>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+              <div className="mt-6 text-center">
+                <button
+                  onClick={() => setShowDownloadModal(false)}
+                  className="px-6 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors"
+                >
+                  知道了
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>

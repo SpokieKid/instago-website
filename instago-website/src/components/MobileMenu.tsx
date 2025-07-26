@@ -36,7 +36,7 @@ export default function MobileMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-40 md:hidden"
             />
 
             {/* Menu panel */}
@@ -45,9 +45,14 @@ export default function MobileMenu() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 md:hidden"
-            >
-              <div className="p-6">
+              className="fixed top-0 right-0 h-full w-80 shadow-2xl z-50 md:hidden"
+              style={{ 
+                backgroundColor: '#ffffff',
+                background: '#ffffff',
+                backdropFilter: 'none'
+              }}
+                          >
+                <div className="p-6 bg-white h-full" style={{ backgroundColor: '#ffffff' }}>
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center space-x-2">
