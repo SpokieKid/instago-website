@@ -97,6 +97,14 @@ export default function Home() {
             <a href="#workflow" className="text-slate-600 hover:text-slate-800 transition-colors">工作流</a>
             <a href="#scenarios" className="text-slate-600 hover:text-slate-800 transition-colors">场景</a>
             <a href="#download" className="text-slate-600 hover:text-slate-800 transition-colors">下载</a>
+            <a 
+              href="https://instago-manage.vercel.app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              截图管理
+            </a>
           </div>
           <MobileMenu />
         </div>

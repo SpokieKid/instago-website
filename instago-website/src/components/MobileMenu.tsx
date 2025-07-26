@@ -12,7 +12,8 @@ export default function MobileMenu() {
     { href: '#features', label: '功能' },
     { href: '#workflow', label: '工作流' },
     { href: '#scenarios', label: '场景' },
-    { href: '#download', label: '下载' }
+    { href: '#download', label: '下载' },
+    { href: 'https://instago-manage.vercel.app', label: '截图管理', external: true }
   ]
 
   return (
@@ -80,6 +81,7 @@ export default function MobileMenu() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                       className="block py-3 px-4 text-lg font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
                     >
                       {item.label}
                     </motion.a>

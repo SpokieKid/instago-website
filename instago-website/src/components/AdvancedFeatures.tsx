@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { 
-  Archive,
   RefreshCw,
   Layers,
   Zap,
@@ -112,22 +111,7 @@ export default function AdvancedFeatures() {
           ))}
         </div>
 
-        {/* Feature highlight */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white rounded-2xl p-8 shadow-2xl">
-            <Archive className="w-12 h-12" />
-            <div className="text-left">
-              <h3 className="text-2xl font-bold mb-2">一次截图，多重价值</h3>
-              <p className="text-indigo-100">OCR识别 → AI分析 → 知识存储 → 学习卡片 → 行动建议</p>
-            </div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   )
