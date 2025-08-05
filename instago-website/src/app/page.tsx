@@ -14,7 +14,8 @@ import {
   MessageCircle,
   Star,
   X,
-  Laptop
+  Laptop,
+  Play
 } from 'lucide-react'
 import FeatureCard from '@/components/FeatureCard'
 import WorkflowSection from '@/components/WorkflowSection'
@@ -174,24 +175,50 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 {isMobile ? (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="px-8 py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-full font-semibold text-lg shadow-lg flex items-center justify-center"
-                  >
-                    <Laptop className="w-5 h-5 mr-2" />
-                    请到 Mac 上下载
-                  </motion.div>
+                  <>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="px-8 py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-full font-semibold text-lg shadow-lg flex items-center justify-center"
+                    >
+                      <Laptop className="w-5 h-5 mr-2" />
+                      请到 Mac 上下载
+                    </motion.div>
+                    <motion.a
+                      href="http://xhslink.com/m/6T5WhvsZAF6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <Play className="w-5 h-5 mr-2" />
+                      Demo 视频
+                    </motion.a>
+                  </>
                 ) : (
-                  <motion.button
-                    onClick={handleDownload}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    立即下载
-                  </motion.button>
+                  <>
+                    <motion.button
+                      onClick={handleDownload}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+                    >
+                      <Download className="w-5 h-5 mr-2" />
+                      立即下载
+                    </motion.button>
+                    <motion.a
+                      href="http://xhslink.com/m/6T5WhvsZAF6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 flex items-center justify-center"
+                    >
+                      <Play className="w-5 h-5 mr-2" />
+                      Demo 视频
+                    </motion.a>
+                  </>
                 )}
               </div>
 
@@ -420,26 +447,52 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
               {isMobile ? (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="px-8 py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-full font-semibold text-lg shadow-lg flex items-center"
-                >
-                  <Laptop className="w-5 h-5 mr-2" />
-                  请到 Mac 上下载
-                  <span className="ml-2 text-sm opacity-80">macOS</span>
-                </motion.div>
+                <>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="px-8 py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-full font-semibold text-lg shadow-lg flex items-center"
+                  >
+                    <Laptop className="w-5 h-5 mr-2" />
+                    请到 Mac 上下载
+                    <span className="ml-2 text-sm opacity-80">macOS</span>
+                  </motion.div>
+                  <motion.a
+                    href="http://xhslink.com/m/6T5WhvsZAF6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 flex items-center"
+                  >
+                    <Play className="w-5 h-5 mr-2" />
+                    Demo 视频
+                  </motion.a>
+                </>
               ) : (
-                <motion.button
-                  onClick={handleDownload}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  下载 InstaGo
-                  <span className="ml-2 text-sm opacity-80">macOS</span>
-                </motion.button>
+                <>
+                  <motion.button
+                    onClick={handleDownload}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    下载 InstaGo
+                    <span className="ml-2 text-sm opacity-80">macOS</span>
+                  </motion.button>
+                  <motion.a
+                    href="http://xhslink.com/m/6T5WhvsZAF6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 flex items-center"
+                  >
+                    <Play className="w-5 h-5 mr-2" />
+                    Demo 视频
+                  </motion.a>
+                </>
               )}
               
               <motion.button
