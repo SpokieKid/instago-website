@@ -546,6 +546,7 @@ export default function Home() {
                 <li><a href="#" className="hover:text-white transition-colors">用户指南</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">常见问题</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">反馈建议</a></li>
+                <li><a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
           </div>
